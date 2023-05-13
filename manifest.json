@@ -1,0 +1,41 @@
+{
+  "background_color": "#64ba1a",
+  "description": "This application has an educational focus, offering valuable information to help users improve their health and well-being.",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "lojaCanabica",
+  "orientation": "portrait",
+  "scope": "/",
+  "short_name": "lojacanabica-pwa",
+  "start_url": "/",
+  "theme_color": "#5ade35",
+  "categories": [
+    "business",
+    "education",
+    "entertainment",
+    "finance",
+    "photo",
+    "shopping",
+    "social"
+  ],
+  "screenshots": [],
+  "icons": [
+    {
+      "src": "assets/img/favicon.png",
+      "type": "image/png",
+      "sizes": "32x32"
+    },
+    {
+      "src": "assets/img/apple-touch-icon.png",
+      "type": "image/png",
+      "sizes": "180x180"
+    }
+  ],
+  "shortcuts": [],
+  "lang": "pt",
+  "display_override": [
+    "browser",
+    "fullscreen",
+    "standalone"
+  ]
+}

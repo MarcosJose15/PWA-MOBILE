@@ -6,12 +6,15 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title>Loja Canabica</title>
-  <meta content="" name="description">
+  <meta content="" name="LojaCanabica">
   <meta content="" name="keywords">
 
+
+  <link rel = "manifest" href="manifest.json">
+
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="assets/img/PlantIcon.jpg" rel="icon">
+  <link href="assets/img/Applcons/playstore.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -651,6 +654,47 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+
+  <div id="snackbar">Uma nova versão está disponível! Clique <a id="reload">AQUI</a> para atualizar.</div>
+
+  <script>
+    let newWorker;
+    function showUpdateBar() {
+      let snackbar = document.getElementById('snackbar');
+      snackbar.className = 'show';
+    }
+    // The click event on the pop up notification
+    document.getElementById('reload').addEventListener('click', function () {
+      newWorker.postMessage({ action: 'skipWaiting' });
+    });
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js').then(reg => {
+        reg.addEventListener('updatefound', () => {
+          // A wild service worker has appeared in reg.installing!
+          newWorker = reg.installing;
+          newWorker.addEventListener('statechange', () => {
+            // Has network.state changed?
+            switch (newWorker.state) {
+              case 'installed':
+                if (navigator.serviceWorker.controller) {
+                  // new update available
+                  showUpdateBar();
+                }
+                // No update available
+                break;
+            }
+          });
+        });
+      });
+      let refreshing;
+      navigator.serviceWorker.addEventListener('controllerchange', function () {
+        if (refreshing) return;
+        window.location.reload();
+        refreshing = true;
+      });
+    }
+  </script>
 
 </body>
 
