@@ -107,7 +107,12 @@
     <div class="container position-relative" data-aos="fade-up" data-aos-delay="500">
       <h1>Loja Canabica1</h1>
       <h2>Desde 2022 trabalhando com os melhores produtos do mercado.</h2>
-      <a href="#about" class="btn-get-started scrollto">Ver produtos</a>
+
+      <form>
+        
+        <a href="#about" class="btn-get-started scrollto" onclick="searchProdutos()" >Ver produtos - (API)</a>
+      </form>
+
     </div>
   </section><!-- End Hero -->
 
@@ -657,6 +662,27 @@
 
 
   <div id="snackbar">Uma nova versão está disponível! Clique <a id="reload">AQUI</a> para atualizar.</div>
+
+  //scriptAPI
+  <script>
+    function searchProdutos() {
+      $('#title').empty();
+
+      var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://127.0.0.1:3000/produto/",
+        "method": "GET"
+      }
+
+      $.ajax(settings).done(function (response) {
+        console.log(response);
+        $('#title').append(response.nome + "(" + response.marca + ")" + "(" + response.DataFabricacao + ")");
+
+      });
+
+    }
+  </script>
 
   <script>
     let newWorker;
